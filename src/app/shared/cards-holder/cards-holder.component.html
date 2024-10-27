@@ -1,10 +1,13 @@
 <div class="container">
+  <app-search-bar (searchCard)="searchCards($event)"></app-search-bar>
+
   <div class="poke-card-holder">
     @for (card of cards; track card.id) {
     <app-card-item [card]="card"></app-card-item>
     }
   </div>
-  <nz-pagination [nzPageIndex]="1" [nzTotal]="maxCards" [nzPageSize]="pageSize"
+
+  <nz-pagination [nzPageIndex]="curPage" [nzTotal]="maxCards" [nzPageSize]="pageSize"
     (nzPageIndexChange)="onPageChanged($event)">
   </nz-pagination>
 </div>
