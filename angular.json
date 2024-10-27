@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pokemon-card-angular": {
+    "pokemon-cards-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/get-a-cat",
+            "outputPath": "dist/pokemon-cards-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "get-a-cat:build:production"
+              "buildTarget": "pokemon-cards-angular:build:production"
             },
             "development": {
-              "buildTarget": "get-a-cat:build:development"
+              "buildTarget": "pokemon-cards-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

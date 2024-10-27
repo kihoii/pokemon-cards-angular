@@ -17,7 +17,7 @@ export class CardService {
     return this.http.get(BASE_URL + url, { headers: this.headers });
   }
 
-  public getCards() {
-    return this.baseGet('cards');
+  public getCards(page: number, pageSize: number) {
+    return this.baseGet(`cards?page=${page}&pageSize=${pageSize}`);
   }
 }
