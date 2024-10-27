@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CardResponse } from '../../interfaces/CardResponse';
 import { CardService } from '../../services/card.service';
+import { CardItemComponent } from '../../shared/card-item/card-item.component';
 
 @Component({
   selector: 'app-cards-list',
   standalone: true,
-  imports: [],
+  imports: [CardItemComponent],
   templateUrl: './cards-list.component.html',
   styleUrl: './cards-list.component.scss',
 })
@@ -15,8 +16,7 @@ export class CardsListComponent {
 
   constructor() {
     this.cardService.getCards().subscribe((resp: any) => {
-      console.log('pupupu');
-      console.log(resp);
+      this.cards = resp.data;
     });
   }
 }
