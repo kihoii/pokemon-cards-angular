@@ -1,11 +1,15 @@
 <div class="container">
   <app-search-bar (searchCard)="searchCards($event)"></app-search-bar>
 
+  @if (isLoading) {
+  <app-loader></app-loader>
+  } @else {
   <div class="poke-card-holder">
     @for (card of cards; track card.id) {
     <app-card-item [card]="card"></app-card-item>
     }
   </div>
+  }
 
   <nz-pagination [nzPageIndex]="curPage" [nzTotal]="maxCards" [nzPageSize]="pageSize"
     (nzPageIndexChange)="onPageChanged($event)">

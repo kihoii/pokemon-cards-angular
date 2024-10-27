@@ -4,11 +4,17 @@ import { CardItemComponent } from '../card-item/card-item.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { CardService } from '../../services/card.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-cards-holder',
   standalone: true,
-  imports: [CardItemComponent, NzPaginationModule, SearchBarComponent],
+  imports: [
+    CardItemComponent,
+    NzPaginationModule,
+    SearchBarComponent,
+    LoaderComponent,
+  ],
   templateUrl: './cards-holder.component.html',
   styleUrl: './cards-holder.component.scss',
 })
@@ -19,9 +25,11 @@ export class CardsHolderComponent {
   cards: CardResponse[] = [];
 
   curPage: number = 1;
-  pageSize: number = 6;
+  pageSize: number = 8;
   maxCards: number;
   name: string = '';
+
+  isLoading: boolean = false;
 
   constructor() {
     if (!this.cardsId) {
@@ -39,10 +47,12 @@ export class CardsHolderComponent {
   }
 
   getCards() {
+    this.isLoading = true;
     this.cardService
       .getCards(this.curPage, this.pageSize, this.name)
       .subscribe((resp: any) => {
         this.cards = resp.data;
+        this.isLoading = false;
       });
   }
 
@@ -50,6 +60,7 @@ export class CardsHolderComponent {
 
   searchCards(value: string) {
     this.name = value;
+    this.curPage = 1;
     this.getCards();
   }
 }
