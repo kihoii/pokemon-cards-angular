@@ -5,6 +5,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { CardService } from '../../services/card.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { LoaderComponent } from '../loader/loader.component';
+import { AsyncPipe, KeyValuePipe, NgFor } from '@angular/common';
+import { concatMap, map, Observable, Subscribable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cards-holder',
@@ -14,6 +16,9 @@ import { LoaderComponent } from '../loader/loader.component';
     NzPaginationModule,
     SearchBarComponent,
     LoaderComponent,
+    NgFor,
+    AsyncPipe,
+    KeyValuePipe,
   ],
   templateUrl: './cards-holder.component.html',
   styleUrl: './cards-holder.component.scss',
@@ -22,7 +27,9 @@ export class CardsHolderComponent {
   @Input() cardsId?: CardResponse[];
 
   cardService: CardService = inject(CardService);
-  cards: CardResponse[] = [];
+  cards!: CardResponse[];
+
+  obbCards$ = this;
 
   curPage: number = 1;
   pageSize: number = 8;
@@ -49,7 +56,7 @@ export class CardsHolderComponent {
   getCards() {
     this.isLoading = true;
     this.cardService
-      .getCards(this.curPage, this.pageSize, this.name)
+      .getCards$(this.curPage, this.pageSize, this.name)
       .subscribe((resp: any) => {
         this.cards = resp.data;
         this.isLoading = false;

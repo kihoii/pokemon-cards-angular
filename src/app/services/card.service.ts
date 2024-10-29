@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { API_KEY, BASE_URL } from './helpers';
 import { CardResponse } from '../interfaces/CardResponse';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +14,18 @@ export class CardService {
     this.headers.set('X-Api-Key', API_KEY);
   }
 
-  public baseGet(url: string) {
-    return this.http.get(BASE_URL + url, { headers: this.headers });
+  baseGet$(url: string): Observable<CardResponse[]> {
+    return this.http.get<CardResponse[]>(BASE_URL + url, {
+      headers: this.headers,
+    });
   }
 
-  public getCards(page: number, pageSize: number, name?: string) {
-    return this.baseGet(
+  public getCards$(
+    page: number,
+    pageSize: number,
+    name?: string
+  ): Observable<CardResponse[]> {
+    return this.baseGet$(
       `cards?page=${page}&pageSize=${pageSize}${name ? `&q=name:${name}*` : ''}`
     );
   }
