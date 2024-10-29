@@ -1,2 +1,2 @@
 export const BASE_URL = `https://api.pokemontcg.io/v2/`;
-export const API_KEY = 'cf7723da-bd7a-4b30-ad96-c24ce22fc106';
+export const API_KEY = '7b120cb1-527b-4826-9b9d-0ab0d4119f40';

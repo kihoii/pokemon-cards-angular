@@ -5,7 +5,9 @@
   <app-loader></app-loader>
   } @else {
   <div class="poke-card-holder">
-    <app-card-item *ngFor="let card of cards" [card]="card"></app-card-item>
+    @for (card of cards; track card.id) {
+    <app-card-item [card]="card"></app-card-item>
+    }
   </div>
   }
 

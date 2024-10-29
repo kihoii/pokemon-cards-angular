@@ -5,8 +5,10 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { CardService } from '../../services/card.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { LoaderComponent } from '../loader/loader.component';
-import { AsyncPipe, KeyValuePipe, NgFor } from '@angular/common';
-import { concatMap, map, Observable, Subscribable, Subscription } from 'rxjs';
+import { AsyncPipe, NgFor } from '@angular/common';
+import { delay } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { getAllCardsAction } from '../../store/actions/get-cards.action';
 
 @Component({
   selector: 'app-cards-holder',
@@ -18,7 +20,6 @@ import { concatMap, map, Observable, Subscribable, Subscription } from 'rxjs';
     LoaderComponent,
     NgFor,
     AsyncPipe,
-    KeyValuePipe,
   ],
   templateUrl: './cards-holder.component.html',
   styleUrl: './cards-holder.component.scss',
@@ -29,8 +30,6 @@ export class CardsHolderComponent {
   cardService: CardService = inject(CardService);
   cards!: CardResponse[];
 
-  obbCards$ = this;
-
   curPage: number = 1;
   pageSize: number = 8;
   maxCards: number;
@@ -38,7 +37,7 @@ export class CardsHolderComponent {
 
   isLoading: boolean = false;
 
-  constructor() {
+  constructor(private store: Store) {
     if (!this.cardsId) {
       this.getCards();
       this.maxCards = 250;
@@ -48,19 +47,23 @@ export class CardsHolderComponent {
     }
   }
 
+  ngOnInit() {}
+
   onPageChanged(index: number) {
     this.curPage = index;
     this.getCards();
   }
 
   getCards() {
-    this.isLoading = true;
+    console.log('pupupu');
+    this.isLoading = false;
     this.cardService
       .getCards$(this.curPage, this.pageSize, this.name)
       .subscribe((resp: any) => {
         this.cards = resp.data;
         this.isLoading = false;
       });
+    this.store.dispatch(getAllCardsAction());
   }
 
   getRequestedCards() {}
