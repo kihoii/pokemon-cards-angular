@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { CardResponse } from '../../interfaces/CardResponse';
 import { CardService } from '../../services/card.service';
 import { CardItemComponent } from '../../shared/card-item/card-item.component';
 import { CardsHolderComponent } from '../../shared/cards-holder/cards-holder.component';

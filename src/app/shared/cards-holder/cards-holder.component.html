@@ -1,21 +1,23 @@
+@let cards = (cards$ | async);
+
 <div class="container">
   <app-search-bar (searchCard)="searchCards($event)"></app-search-bar>
-
-  @if (isLoading) {
+  @if (isLoadingCards$ | async ) {
   <app-loader></app-loader>
   } @else {
+
+  @if (cards?.length) {
   <div class="poke-card-holder">
-    @for (card of cards; track card.id) {
+    @for (card of cards; track card) {
     <app-card-item [card]="card"></app-card-item>
     }
   </div>
+  } @else {
+  <nz-empty nzNotFoundImage="simple"></nz-empty>
+  }
   }
 
-  <nz-pagination
-    [nzPageIndex]="curPage"
-    [nzTotal]="maxCards"
-    [nzPageSize]="pageSize"
-    (nzPageIndexChange)="onPageChanged($event)"
-  >
+  <nz-pagination [nzPageIndex]="curPage" [nzTotal]="totalCount$ | async" [nzPageSize]="pageSize"
+    (nzPageIndexChange)="onPageChanged($event)">
   </nz-pagination>
 </div>

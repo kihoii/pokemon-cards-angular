@@ -1,1 +1,4 @@
-export interface CardWeaknessResponse {}
+export interface CardWeaknessResponse {
+  type: string;
+  value: string;
+}

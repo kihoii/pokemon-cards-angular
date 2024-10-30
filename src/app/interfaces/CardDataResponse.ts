@@ -1,7 +1,7 @@
 import { CardAttackResponse } from './CardAttackResponse';
 import { CardWeaknessResponse } from './CardWeaknessResponse';
 
-export interface CardResponse {
+export interface CardDataResponse {
   id: string;
   name: string;
   supertype: string;

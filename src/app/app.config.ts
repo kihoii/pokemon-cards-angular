@@ -13,8 +13,12 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { ActionTypes } from './store/actionTypes';
+import { cardsListReducer } from './store/reducers';
+import { provideEffects } from '@ngrx/effects';
+import { GetCardsEffect } from './store/effects/get-cards.effect';
 
 registerLocaleData(en);
 
@@ -29,5 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: isDevMode() }),
+    provideState('get cards', cardsListReducer),
+    provideEffects(GetCardsEffect),
   ],
 };
