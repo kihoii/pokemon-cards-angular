@@ -3,7 +3,7 @@ import { CardsListState } from '../interfaces/CardsListState';
 import {
   getAllCardsAction,
   getAllCardsSuccessAction,
-} from './actions/get-cards.action';
+} from './actions/card.actions';
 
 const initialState: CardsListState = {
   isLoading: false,

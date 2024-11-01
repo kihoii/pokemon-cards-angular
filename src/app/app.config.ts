@@ -18,7 +18,9 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ActionTypes } from './store/actionTypes';
 import { cardsListReducer } from './store/reducers';
 import { provideEffects } from '@ngrx/effects';
-import { GetCardsEffect } from './store/effects/get-cards.effect';
+import { GetCardsEffect } from './store/effects/card.effects';
+import { UserEffects } from './store/effects/user.effects';
+import { AddUserReducer, AuthUserReducer } from './store/user.reducers';
 
 registerLocaleData(en);
 
@@ -34,6 +36,8 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: isDevMode() }),
     provideState('get cards', cardsListReducer),
-    provideEffects(GetCardsEffect),
+    provideState('add user', AddUserReducer),
+    provideState('auth', AuthUserReducer),
+    provideEffects(GetCardsEffect, UserEffects),
   ],
 };

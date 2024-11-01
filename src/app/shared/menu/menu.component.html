@@ -1,15 +1,23 @@
-<ul nz-menu nzMode="horizontal">
-  <li nz-menu-item nzSelected>
-    All Cards
-  </li>
-  <li nz-submenu nzTitle="Navigation Three - Submenu">
-    <ul>
-      <li nz-menu-item>
-        Owned
-      </li>
-      <li nz-menu-item>
-        Wished
-      </li>
-    </ul>
-  </li>
+<ul nz-menu nzMode="horizontal" class="poke-menu">
+  <ul class="poke-menu-links">
+    <li nz-menu-item>
+      <a href="">All cards</a>
+    </li>
+    <li nz-submenu nzTitle="Navigation Three - Submenu">
+      <ul>
+        <li nz-menu-item>
+          Owned
+        </li>
+        <li nz-menu-item>
+          Wished
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+
+  <div class="poke-menu-buttons">
+    <a href="login" class="login-link">Log in</a>
+    <a href="signup" class="signup-link">Sign up</a>
+  </div>
 </ul>

@@ -1,0 +1,19 @@
+<form nz-form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="email" nzRequired>E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+      <input nz-input type="email" formControlName="email" id="email">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+      <input nz-input type="password" formControlName="password" id="password">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary">Log in</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

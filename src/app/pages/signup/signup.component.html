@@ -1,0 +1,62 @@
+<div *ngIf="isAuthed$ | async">Succeed</div>
+
+<form nz-form [formGroup]="signupForm" (ngSubmit)="handleSubmit()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="name" nzRequired>Name</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
+      <input nz-input formControlName="name" id="name">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="email" nzRequired>E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+      <input nz-input type="email" formControlName="email" id="email">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+      <input nz-input type="password" formControlName="password" id="password">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="passwordConfirm" nzRequired nzLabelWrap>
+      Password confirm</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please confirm your password!">
+      <input nz-input type="password" formControlName="passwordConfirm" id="passwordConfirm">
+    </nz-form-control>
+  </nz-form-item>
+  <div class="error-message" *ngIf="signupForm.errors?.['PasswordNoMatch']">
+    Password doesn't match.
+  </div>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="phone" nzRequired>Phone</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your phone!">
+      <input nz-input formControlName="phone" id="phone">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="birthDate" nzRequired>Date of Birth</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your date of birth!">
+      <input nz-input formControlName="birthDate" id="birthDate">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="address" nzRequired>Address</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your address!">
+      <input nz-input formControlName="address" id="address">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary">Sign up</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

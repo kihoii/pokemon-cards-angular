@@ -4,7 +4,7 @@ import {
   getAllCardsAction,
   getAllCardsFailureAction,
   getAllCardsSuccessAction,
-} from '../actions/get-cards.action';
+} from '../actions/card.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { CardService } from '../../services/card.service';
 import { CardListResponse } from '../../interfaces/CardListResponse';

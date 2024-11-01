@@ -8,7 +8,7 @@ import { LoaderComponent } from '../loader/loader.component';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { getAllCardsAction } from '../../store/actions/get-cards.action';
+import { getAllCardsAction } from '../../store/actions/card.actions';
 import {
   getCardsSelector,
   getCardsTotalCount,
@@ -34,9 +34,6 @@ import { CardDataResponse } from '../../interfaces/CardDataResponse';
 export class CardsHolderComponent {
   @Input() cardsId?: CardDataResponse[];
 
-  cardService: CardService = inject(CardService);
-  store: Store = inject(Store);
-
   curPage: number = 1;
   pageSize: number = 8;
   name: string = '';
@@ -44,6 +41,8 @@ export class CardsHolderComponent {
   isLoadingCards$!: Observable<boolean>;
   cards$!: Observable<CardDataResponse[]>;
   totalCount$!: Observable<number>;
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.getCards();
